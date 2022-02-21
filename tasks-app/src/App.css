@@ -1,38 +1,54 @@
+@font-face {
+    font-family: "Euro";
+    src: local("euro"), url(./fonts/eurofurence/eurof55.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Euro";
+    font-weight: bold;
+    src: local("euro"), url(./fonts/eurofurence/eurof75.ttf) format("truetype");
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 .App {
-  text-align: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(
+        145deg,
+        hsl(0, 68%, 22%),
+        hsl(0, 59%, 30%),
+        hsl(0, 36%, 50%),
+        hsl(0, 39%, 50%),
+        hsl(0, 36%, 54%),
+        hsl(0, 36%, 50%)
+    );
+    font-family: "Euro";
+    letter-spacing: 0.2vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.heading {
+    text-transform: capitalize;
+    font-size: 50px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin: 2vh 0;
+    color: white;
+    z-index: 1;
+    letter-spacing: 0.2em;
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media (max-width: 800px) {
+    .heading {
+        font-size: 2rem;
+        margin: 1vh 0;
+    }
 }
