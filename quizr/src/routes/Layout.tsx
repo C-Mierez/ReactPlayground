@@ -6,10 +6,20 @@ import { red } from "@mui/material/colors";
 
 export const LayoutPage = () => {
     return (
-        <div className={css.body}>
-            <nav className={css.header + " " + css.row}>
+        <div className={css.layout}>
+            <NavBar />
+            <Outlet />
+            <Footer />
+        </div>
+    );
+};
+
+const NavBar = () => {
+    return (
+        <div>
+            <nav className={css.header + " " + "row"}>
                 <h1 className={css.title}>QUIZR</h1>
-                <span className={css.content + " " + css.row}>
+                <span className={css.content + " " + "row"}>
                     <Link to="/">Home</Link>
                     <Link to="/quiz-game">Quiz</Link>
                     <Link to="/about">About</Link>
@@ -17,59 +27,87 @@ export const LayoutPage = () => {
                 </span>
             </nav>
             <div className={css.header_wave_decorator} />
-            <div className={css.section_area}>
-                <section>
-                    <h1>Sweet Curves</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quo consectetur tempore dolore odio inventore nam
-                        possimus commodi vel aliquam similique dolor
-                        reprehenderit, iste, nostrum dolorem, mollitia
-                        perferendis et odit. Rem!
-                    </p>
-                </section>
-                <section>
-                    <h1>Sweet Curves</h1>
-                    <p>
-                        Natus non aliquid deserunt sequi dignissimos quia
-                        adipisci illo sit delectus a incidunt dolor repudiandae
-                        excepturi perferendis tenetur provident minus earum
-                        corrupti voluptates, nisi neque temporibus? In minus
-                        voluptate excepturi!
-                    </p>
-                </section>
-                <div className={css.wave_spacer + " " + css.wave_svg_1}></div>
-                <section>
-                    <h1>Sweet Curves</h1>
-                    <p>
-                        Pariatur nam cum vero ut eligendi possimus aut dolorem!
-                        Sapiente voluptatibus consectetur facere vitae enim
-                        necessitatibus nam accusamus modi repudiandae corporis,
-                        distinctio accusantium deleniti voluptate ex fugiat
-                        tempora perferendis! Enim?
-                    </p>
-                </section>
-                {/* <Outlet /> */}
-            </div>
+        </div>
+    );
+};
 
-            <div className={css.footer + " " + css.column}>
+interface FlexCardProps {
+    title?: string;
+    isStyled?: boolean;
+    content: FlexCardContent;
+    content2?: string[];
+}
+
+type FlexCardContent = {
+    text: string;
+    to_bold?: string[];
+};
+
+const FlexCard = (props: FlexCardProps) => {
+    const {
+        title,
+        content: { text, to_bold },
+        isStyled,
+        content2,
+    } = props;
+
+    let finalContent;
+    if (to_bold) {
+        finalContent = text.split(" ").map((word, i) => {
+            return to_bold.includes(word) ? (
+                <span className={"bold"}>{`${word} `} </span>
+            ) : (
+                `${word} `
+            );
+        });
+    } else {
+        finalContent = <p>text</p>;
+    }
+    return (
+        <>
+            <div className={css.card + " " + css.card_styled + " " + "column"}>
+                {title ? <h3>{title}</h3> : <></>}
+                <p>{finalContent}</p>
+                {/* {content2.map((text, i) =>
+                    i % 2 === 0 ? <span className={"bold"}>{text}</span> : <span className={"bold"}>{text}</span>
+                )} */}
+                <div className={"row"}>
+                    <div style={{ fontSize: "0.7em" }}>
+                        You know you want to.
+                    </div>
+                    <div className={css.icon_container}>
+                        <img
+                            src={require("../styles/images/github.png")}
+                            alt="github"
+                        />
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+const Footer = () => {
+    return (
+        <>
+            <div className={css.footer + " " + "column"}>
                 <div
                     className={css.wave_spacer + " " + css.wave_svg_footer}
                 ></div>
-                <div className={css.content + " " + css.row}>
-                    <div className={css.column}>
+                <div className={css.content + " " + "row"}>
+                    <div className={"column"}>
                         <h2 className={css.footer_title}>QUIZR</h2>
                         <div className={css.card_styled + " " + css.card}>
                             <p>
                                 The most useless yet unnecessarily convoluted
                                 website you will visit today,{" "}
-                                <span>guaranteed!</span>
+                                <span className={"bold"}>guaranteed!</span>
                             </p>
                         </div>
                     </div>
-                    <div id={css.id_socials} className={css.column}>
+                    <div id={css.id_socials} className={"column"}>
                         <h2 className={css.title}>SOCIALS</h2>
-                        <div className={css.row}>
+                        <div className={"row"}>
                             <div
                                 className={
                                     css.icon_container + " " + css.card_styled
@@ -121,46 +159,32 @@ export const LayoutPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={css.column}>
-                        <div
-                            className={
-                                css.card +
-                                " " +
-                                css.card_styled +
-                                " " +
-                                css.column
-                            }
-                        >
-                            <h3>WANT MORE?</h3>
-                            <p>
-                                Find this website and even <span>worse</span>{" "}
-                                stuff in my repositories!
-                            </p>
-                            <div className={css.row}>
-                                <div style={{ fontSize: "0.7em" }}>
-                                    You know you want to.
-                                </div>
-                                <div className={css.icon_container}>
-                                    <img
-                                        src={require("../styles/images/github.png")}
-                                        alt="github"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                    <div className={"column"}>
+                        <FlexCard
+                            title="WANT MORE?"
+                            content={{
+                                text: "Find this website and even worse stuff in my repositories!",
+                                to_bold: ["worse"],
+                            }}
+                            // content2={[
+                            //     "Find this website and even ",
+                            //     "worse",
+                            //     " stuff in my repositories!",
+                            // ]}
+                        ></FlexCard>
                     </div>
                 </div>
                 <div className={css.license}>
                     <p className={css.card}>2022, Quizr</p>
                     <p className={css.card}>MIT License</p>
                     <p className={css.card}>
-                        Built by <span>CMierez</span>
+                        Built by <span className={"bold"}>CMierez</span>
                     </p>
                 </div>
                 <div className={css.blob1}></div>
                 <div className={css.blob3}></div>
                 <div className={css.blob2}></div>
             </div>
-        </div>
+        </>
     );
 };
