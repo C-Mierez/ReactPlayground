@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Global.css";
+import "./styles/Global.module.css";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import { LayoutPage } from "./routes/Layout";
 import { HomePage } from "./routes/Home";

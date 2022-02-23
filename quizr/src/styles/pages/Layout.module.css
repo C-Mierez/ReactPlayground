@@ -1,17 +1,8 @@
-.body {
-    background-color: var(--neutral--clr-800);
-    font-family: var(--secondary--font-family);
-    font-size: var(--secondary--font-size);
-    color: var(--neutral--clr-100);
-
-    height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    z-index: -1;
-}
-
 .header {
+    /*TODO Modify this to relative if I need collision header vs content */
+    /* position: absolute;
+    width: 100%;
+    top: 0; */
     position: relative;
 }
 
@@ -32,9 +23,7 @@ nav {
     gap: 3rem;
 }
 
-.title {
-    font-family: var(--primary--font-family);
-    font-size: var(--primary--font-size);
+h1.title {
     color: var(--neutral--clr-800);
 }
 
@@ -279,14 +268,6 @@ nav a {
     background-color: var(--neutral--clr-800);
     box-shadow: 0 0.5em 0 var(--neutral--clr-100),
         0 0 0.4em var(--neutral--clr-100);
-}
-
-.footer_box .title,
-.footer_column .title {
-    /* box-shadow: 0 0 0 var(--neutral--clr-100); */
-    -webkit-text-stroke: 2px var(--neutral--clr-100);
-    font-size: 4em;
-    padding-left: 1rem;
 }
 
 .footer_box > p {

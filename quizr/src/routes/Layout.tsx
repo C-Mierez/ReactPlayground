@@ -1,24 +1,25 @@
 import { Link, Outlet } from "react-router-dom";
-import styles from "../styles/pages/Layout.module.css";
+import layout from "../styles/pages/Layout.module.css";
+import globals from "../styles/Globals.module.css";
 import { createRef, useEffect, useRef } from "react";
 import DriveFolderUpload from "@mui/icons-material/DriveFolderUpload";
 
 export const LayoutPage = () => {
     return (
-        <div className={styles.body}>
-            <div className={styles.header}>
+        <div className={layout.body}>
+            <div className={layout.header}>
                 <nav>
-                    <div className={styles.title}>QUIZR</div>
-                    <span className={styles.nav_item_row}>
+                    <h1 className={layout.title}>QUIZR</h1>
+                    <span className={layout.nav_item_row}>
                         <Link to="/">Home</Link>
                         <Link to="/quiz-game">Quiz</Link>
                         <Link to="/about">About</Link>
                         <Link to="/quiz-game/2">Test</Link>
                     </span>
                 </nav>
-                <div className={styles.nav_wave} />
+                <div className={layout.nav_wave} />
             </div>
-            <div className={styles.section_area}>
+            <div className={layout.section_area}>
                 <section>
                     <h1>Sweet Curves</h1>
                     <p>
@@ -40,7 +41,7 @@ export const LayoutPage = () => {
                     </p>
                 </section>
                 <div
-                    className={styles.wave_spacer + " " + styles.wave_svg_1}
+                    className={layout.wave_spacer + " " + layout.wave_svg_1}
                 ></div>
                 <section>
                     <h1>Sweet Curves</h1>
@@ -55,29 +56,29 @@ export const LayoutPage = () => {
                 {/* <Outlet /> */}
             </div>
 
-            <div className={styles.footer}>
+            <div className={layout.footer}>
                 <div
                     className={
-                        styles.wave_spacer +
+                        layout.wave_spacer +
                         " " +
-                        styles.wave_footer +
+                        layout.wave_footer +
                         " " +
-                        styles.flip
+                        layout.flip
                     }
                 ></div>
                 <section>
-                    <div className={styles.footer_column}>
-                        <div
-                            className={styles.title}
+                    <div className={layout.footer_column}>
+                        <h2
+                            className={layout.title}
                             style={{ fontSize: "5.4em" }}
                         >
                             QUIZR
-                        </div>
+                        </h2>
                         <div
                             className={
-                                styles.footer_box_colored +
+                                layout.footer_box_colored +
                                 " " +
-                                styles.footer_box
+                                layout.footer_box
                             }
                         >
                             <p>
@@ -87,19 +88,19 @@ export const LayoutPage = () => {
                             </p>
                         </div>
                     </div>
-                    <div className={styles.footer_column}>
-                        <div
-                            className={styles.title}
+                    <div className={layout.footer_column}>
+                        <h2
+                            className={layout.title}
                             style={{ alignSelf: "center", padding: "0" }}
                         >
                             SOCIALS
-                        </div>
-                        <div className={styles.item_row}>
+                        </h2>
+                        <div className={layout.item_row}>
                             <div
                                 className={
-                                    styles.icon_container +
+                                    layout.icon_container +
                                     " " +
-                                    styles.footer_box_colored
+                                    layout.footer_box_colored
                                 }
                             >
                                 <svg
@@ -113,9 +114,9 @@ export const LayoutPage = () => {
                             </div>
                             <div
                                 className={
-                                    styles.icon_container +
+                                    layout.icon_container +
                                     " " +
-                                    styles.footer_box_colored
+                                    layout.footer_box_colored
                                 }
                             >
                                 <svg
@@ -132,9 +133,9 @@ export const LayoutPage = () => {
                             </div>
                             <div
                                 className={
-                                    styles.icon_container +
+                                    layout.icon_container +
                                     " " +
-                                    styles.footer_box_colored
+                                    layout.footer_box_colored
                                 }
                             >
                                 <svg
@@ -185,19 +186,19 @@ export const LayoutPage = () => {
 
                     <div
                         className={
-                            styles.footer_box + " " + styles.footer_box_colored
+                            layout.footer_box + " " + layout.footer_box_colored
                         }
                     >
-                        <h1>FIND THIS SITE...</h1>
+                        <h3>FIND THIS SITE...</h3>
                         <p>
                             ... and even <span>worse</span> stuff in my
                             repositories!
                         </p>
-                        <div className={styles.socials_row}>
+                        <div className={layout.socials_row}>
                             <div style={{ fontSize: "0.7em" }}>
                                 You know you want to.
                             </div>
-                            <div className={styles.icon_container}>
+                            <div className={layout.icon_container}>
                                 <img
                                     src={require("../styles/images/github.png")}
                                     alt="github"
@@ -206,14 +207,14 @@ export const LayoutPage = () => {
                         </div>
                     </div>
                 </section>
-                <div className={styles.footer_box + " " + styles.license}>
+                <div className={layout.footer_box + " " + layout.license}>
                     <p>2022, Quizr</p>
                     <p>MIT License</p>
                     <p>Built by CMierez</p>
                 </div>
-                <div className={styles.blob1}></div>
-                <div className={styles.blob3}></div>
-                <div className={styles.blob2}></div>
+                <div className={layout.blob1}></div>
+                <div className={layout.blob3}></div>
+                <div className={layout.blob2}></div>
             </div>
         </div>
     );
