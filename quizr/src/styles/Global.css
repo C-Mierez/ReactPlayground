@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "Dosis";
+    font-weight: bold;
+    src: local("dosis"), url(./fonts/dosis/Dosis-Bold.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Dosis";
+    font-weight: normal;
+    src: local("dosis"), url(./fonts/dosis/Dosis-Medium.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Dosis";
+    font-weight: lighter;
+    src: local("dosis"), url(./fonts/dosis/Dosis-Light.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Frederick";
+    font-weight: lighter;
+    src: local("frederick"),
+        url(./fonts/frederick/FrederickSans.otf) format("opentype");
+}
+
+:root {
+    /* Colors */
+    --neutral--clr-900: #0e0e0e;
+    --neutral--clr-800: #1f2731;
+    --neutral--clr-100: #f3eff5;
+
+    --primary--clr-600: #14cc98;
+
+    --secondary--clr-600: #5e548e;
+    --secondary--clr-accent-400: #7c48c2;
+
+    --tertiary--clr-400: #e56399;
+
+    /* Fonts */
+    --primary--font-family: "Frederick";
+    --primary--font-size: 3rem;
+
+    --secondary--font-family: "Dosis";
+    --secondary--font-size: 1.1rem;
+    --secondary--line-height: 1.3em;
+}
