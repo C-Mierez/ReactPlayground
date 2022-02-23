@@ -1,12 +1,33 @@
-.header {
-    /*TODO Modify this to relative if I need collision header vs content */
-    /* position: absolute;
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     width: 100%;
-    top: 0; */
-    position: relative;
+    gap: 1em;
 }
 
-nav {
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1em;
+}
+
+.flip {
+    transform: rotate(180deg);
+}
+
+p span {
+    color: var(--tertiary--clr-400);
+    font-weight: bold;
+}
+
+.header {
     position: relative;
     min-height: 10vh;
     width: 100%;
@@ -14,37 +35,28 @@ nav {
     background-color: var(--primary--clr-600);
     color: var(--neutral--clr-800);
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
     padding: 0 3rem;
     gap: 3rem;
 }
 
-h1.title {
+.header h1.title {
+    font-size: calc(var(--primary--font-size) * 0.8);
     color: var(--neutral--clr-800);
 }
 
-.nav_item_row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-
+.header .content {
     width: fit-content;
     gap: 2em;
 }
 
-nav a {
+.header .content a {
     text-decoration: none;
     color: var(--neutral--clr-800);
     font-family: var(--secondary--font-family);
     font-weight: bold;
 }
 
-.nav_wave {
+.header_wave_decorator {
     aspect-ratio: 350/21;
     object-fit: contain;
     display: block;
@@ -116,14 +128,11 @@ nav a {
     background-position: center;
     background-size: cover;
 }
-.wave_flip {
-    transform: rotate(180deg);
-}
 
 .wave_svg_1 {
     background-image: url("../svgs/wave_separator.svg");
 }
-.wave_footer {
+.wave_svg_footer {
     background-image: url("../svgs/wave_footer3.svg");
 }
 
@@ -136,111 +145,63 @@ nav a {
     background-color: var(--primary--clr-600);
     color: var(--neutral--clr-100);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
     padding: 0 0 1rem 0;
     gap: 3rem;
 }
 
-.footer::before {
-    background: var(--secondary--clr-accent-400);
+.footer h2.footer_title {
+    font-size: calc(var(--primary--font-size) * 1.5);
+    padding-left: 1rem;
+    align-self: flex-start;
 }
 
-.footer_wave {
-    flex: 1;
-    aspect-ratio: 600/30;
-    display: block;
-    min-width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-image: url("../svgs/wave_footer4.svg");
+.footer h2.title {
+    align-self: center;
 }
 
-.footer > section {
-    z-index: 2;
+.footer .content {
     flex: 1;
+    z-index: 1;
     width: 50%;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: flex-end;
-    flex-wrap: wrap;
     gap: 2em;
 }
 
-.footer_column {
+.footer .column {
     flex: 1;
     color: var(--neutral--clr-100);
-    border-radius: 1em;
-    padding: 0 1rem;
-    box-sizing: border-box;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
     gap: 0.5rem;
 }
 
-.footer_box {
+.card {
     flex: 1;
     color: var(--neutral--clr-100);
+
+    gap: 5rem;
+    align-items: flex-start;
+}
+
+.card_styled {
+    color: var(--neutral--clr-100);
+    background-color: var(--neutral--clr-800);
+    box-shadow: 0 0.5em 0 var(--neutral--clr-100),
+        0 0 0.4em var(--neutral--clr-100);
     border-radius: 1em;
     padding: 0.6em 1rem;
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 0.5rem;
 }
 
-.footer_box span {
-    color: var(--tertiary--clr-400);
-    font-weight: bold;
+.card_styled h3 {
+    font-size: calc(var(--primary--font-size) * 0.8);
 }
 
-.socials_row {
-    display: flex;
-    flex-direction: row;
+.card .row {
     justify-content: flex-end;
-    align-items: flex-end;
-    width: 100%;
+
     gap: 1rem;
 }
-.icon_container > * {
-    min-height: 100%;
-    min-width: 100%;
-    aspect-ratio: 1;
-    color: var(--tertiary--clr-400);
-    fill: var(--tertiary--clr-400);
-}
 
-.footer_desc {
-    font-weight: bold;
-    font-size: var(--secondary--font-size);
-    color: var(--neutral--clr-800);
-    line-height: 1.3em;
-    letter-spacing: 0.1em;
-}
-
-.socials_row .icon_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--neutral--clr-100);
-    border-radius: 15%;
-    padding: 0.2em;
-
-    height: 2.2em;
-    width: 2.2em;
-}
 .icon_container {
     cursor: pointer;
     display: flex;
@@ -255,7 +216,20 @@ nav a {
     transition: 0.9s ease-in-out;
 }
 
-.item_row .icon_container:hover {
+.icon_container > * {
+    min-height: 100%;
+    min-width: 100%;
+    aspect-ratio: 1;
+    color: var(--tertiary--clr-400);
+    fill: var(--tertiary--clr-400);
+}
+
+.card .icon_container {
+    background-color: var(--neutral--clr-100);
+    padding: 0.2em;
+}
+
+#id_socials .icon_container:hover {
     transform: rotate(360deg) scale(1.3);
 }
 .icon_container:active {
@@ -263,30 +237,26 @@ nav a {
     transform: scale(0.85);
 }
 
-.footer_box_colored {
-    position: relative;
-    background-color: var(--neutral--clr-800);
-    box-shadow: 0 0.5em 0 var(--neutral--clr-100),
-        0 0 0.4em var(--neutral--clr-100);
-}
-
-.footer_box > p {
+.card p {
     color: var(--neutral--clr-100);
 }
 
 .license p {
     text-decoration: none;
-    color: var(--neutral--clr-800);
+    /* color: var(--neutral--clr-800); */
     font-family: var(--secondary--font-family);
     font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.08em;
 }
 
-.footer .license {
+.license {
     width: 50%;
+    opacity: 0.8;
 
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
 
@@ -294,18 +264,12 @@ nav a {
 
     font-size: calc(var(--secondary--font-size) * 0.75);
     font-weight: lighter;
+    transition: 0.3s;
 }
-.item_row {
-    flex: 1;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    width: 100%;
+.license:hover {
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 .blob2 {

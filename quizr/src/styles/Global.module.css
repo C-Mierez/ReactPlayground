@@ -78,8 +78,19 @@ h1 {
 h2 {
     display: block;
     font-family: var(--primary--font-family);
-    font-size: calc(var(--primary--font-size) * 1.4);
+    font-size: var(--primary--font-size);
     color: var(--neutral--clr-800);
     -webkit-text-stroke: 0.025em var(--neutral--clr-100);
     font-weight: normal;
+}
+
+h3 {
+    display: block;
+    font-family: var(--secondary--font-family);
+    font-size: var(--primary--font-size);
+    /* Adjust to match primary font header size */
+    /* Dosis font is natively larger than Frederick */
+    line-height: 0.9em;
+    color: var(--neutral--clr-100);
+    font-weight: bold;
 }

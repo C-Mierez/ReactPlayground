@@ -1,25 +1,23 @@
 import { Link, Outlet } from "react-router-dom";
-import layout from "../styles/pages/Layout.module.css";
-import globals from "../styles/Globals.module.css";
+import css from "../styles/pages/Layout.module.css";
 import { createRef, useEffect, useRef } from "react";
 import DriveFolderUpload from "@mui/icons-material/DriveFolderUpload";
+import { red } from "@mui/material/colors";
 
 export const LayoutPage = () => {
     return (
-        <div className={layout.body}>
-            <div className={layout.header}>
-                <nav>
-                    <h1 className={layout.title}>QUIZR</h1>
-                    <span className={layout.nav_item_row}>
-                        <Link to="/">Home</Link>
-                        <Link to="/quiz-game">Quiz</Link>
-                        <Link to="/about">About</Link>
-                        <Link to="/quiz-game/2">Test</Link>
-                    </span>
-                </nav>
-                <div className={layout.nav_wave} />
-            </div>
-            <div className={layout.section_area}>
+        <div className={css.body}>
+            <nav className={css.header + " " + css.row}>
+                <h1 className={css.title}>QUIZR</h1>
+                <span className={css.content + " " + css.row}>
+                    <Link to="/">Home</Link>
+                    <Link to="/quiz-game">Quiz</Link>
+                    <Link to="/about">About</Link>
+                    <Link to="/quiz-game/2">Test</Link>
+                </span>
+            </nav>
+            <div className={css.header_wave_decorator} />
+            <div className={css.section_area}>
                 <section>
                     <h1>Sweet Curves</h1>
                     <p>
@@ -40,9 +38,7 @@ export const LayoutPage = () => {
                         voluptate excepturi!
                     </p>
                 </section>
-                <div
-                    className={layout.wave_spacer + " " + layout.wave_svg_1}
-                ></div>
+                <div className={css.wave_spacer + " " + css.wave_svg_1}></div>
                 <section>
                     <h1>Sweet Curves</h1>
                     <p>
@@ -56,51 +52,27 @@ export const LayoutPage = () => {
                 {/* <Outlet /> */}
             </div>
 
-            <div className={layout.footer}>
+            <div className={css.footer + " " + css.column}>
                 <div
-                    className={
-                        layout.wave_spacer +
-                        " " +
-                        layout.wave_footer +
-                        " " +
-                        layout.flip
-                    }
+                    className={css.wave_spacer + " " + css.wave_svg_footer}
                 ></div>
-                <section>
-                    <div className={layout.footer_column}>
-                        <h2
-                            className={layout.title}
-                            style={{ fontSize: "5.4em" }}
-                        >
-                            QUIZR
-                        </h2>
-                        <div
-                            className={
-                                layout.footer_box_colored +
-                                " " +
-                                layout.footer_box
-                            }
-                        >
+                <div className={css.content + " " + css.row}>
+                    <div className={css.column}>
+                        <h2 className={css.footer_title}>QUIZR</h2>
+                        <div className={css.card_styled + " " + css.card}>
                             <p>
-                                The most unnecessarily convoluted and useless
+                                The most useless yet unnecessarily convoluted
                                 website you will visit today,{" "}
                                 <span>guaranteed!</span>
                             </p>
                         </div>
                     </div>
-                    <div className={layout.footer_column}>
-                        <h2
-                            className={layout.title}
-                            style={{ alignSelf: "center", padding: "0" }}
-                        >
-                            SOCIALS
-                        </h2>
-                        <div className={layout.item_row}>
+                    <div id={css.id_socials} className={css.column}>
+                        <h2 className={css.title}>SOCIALS</h2>
+                        <div className={css.row}>
                             <div
                                 className={
-                                    layout.icon_container +
-                                    " " +
-                                    layout.footer_box_colored
+                                    css.icon_container + " " + css.card_styled
                                 }
                             >
                                 <svg
@@ -114,9 +86,7 @@ export const LayoutPage = () => {
                             </div>
                             <div
                                 className={
-                                    layout.icon_container +
-                                    " " +
-                                    layout.footer_box_colored
+                                    css.icon_container + " " + css.card_styled
                                 }
                             >
                                 <svg
@@ -133,9 +103,7 @@ export const LayoutPage = () => {
                             </div>
                             <div
                                 className={
-                                    layout.icon_container +
-                                    " " +
-                                    layout.footer_box_colored
+                                    css.icon_container + " " + css.card_styled
                                 }
                             >
                                 <svg
@@ -153,68 +121,45 @@ export const LayoutPage = () => {
                             </div>
                         </div>
                     </div>
-
-                    {/* <div
-                        className={
-                            styles.footer_box + " " + styles.footer_box_colored
-                        }
-                    >
-                        <h1>ARE YOU LOST?</h1>
-                        <p>
-                            Perhaps some of these links can help you find your
-                            way back:
-                        </p>
-                        <div className={styles.socials_row}>
-                            <div className={styles.icon_container}>
-                                <DriveFolderUpload fontStyle="inherit"></DriveFolderUpload>
-                            </div>
-                            <div className={styles.icon_container}>
-                                <DriveFolderUpload fontStyle="inherit"></DriveFolderUpload>
-                            </div>
-                            <div className={styles.icon_container}>
-                                <svg
-                                    viewBox="0 0 256 209"
-                                    preserveAspectRatio="xMidYMid"
-                                >
-                                    <g>
-                                        <path d="M256,25.4500259 C246.580841,29.6272672 236.458451,32.4504868 225.834156,33.7202333 C236.678503,27.2198053 245.00583,16.9269929 248.927437,4.66307685 C238.779765,10.6812633 227.539325,15.0523376 215.57599,17.408298 C205.994835,7.2006971 192.34506,0.822 177.239197,0.822 C148.232605,0.822 124.716076,24.3375931 124.716076,53.3423116 C124.716076,57.4586875 125.181462,61.4673784 126.076652,65.3112644 C82.4258385,63.1210453 43.7257252,42.211429 17.821398,10.4359288 C13.3005011,18.1929938 10.710443,27.2151234 10.710443,36.8402889 C10.710443,55.061526 19.9835254,71.1374907 34.0762135,80.5557137 C25.4660961,80.2832239 17.3681846,77.9207088 10.2862577,73.9869292 C10.2825122,74.2060448 10.2825122,74.4260967 10.2825122,74.647085 C10.2825122,100.094453 28.3867003,121.322443 52.413563,126.14673 C48.0059695,127.347184 43.3661509,127.988612 38.5755734,127.988612 C35.1914554,127.988612 31.9009766,127.659938 28.694773,127.046602 C35.3777973,147.913145 54.7742053,163.097665 77.7569918,163.52185 C59.7820257,177.607983 37.1354036,186.004604 12.5289147,186.004604 C8.28987161,186.004604 4.10888474,185.75646 0,185.271409 C23.2431033,200.173139 50.8507261,208.867532 80.5109185,208.867532 C177.116529,208.867532 229.943977,128.836982 229.943977,59.4326002 C229.943977,57.1552968 229.893412,54.8901664 229.792282,52.6381454 C240.053257,45.2331635 248.958338,35.9825545 256,25.4500259"></path>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                    </div> */}
-
-                    <div
-                        className={
-                            layout.footer_box + " " + layout.footer_box_colored
-                        }
-                    >
-                        <h3>FIND THIS SITE...</h3>
-                        <p>
-                            ... and even <span>worse</span> stuff in my
-                            repositories!
-                        </p>
-                        <div className={layout.socials_row}>
-                            <div style={{ fontSize: "0.7em" }}>
-                                You know you want to.
-                            </div>
-                            <div className={layout.icon_container}>
-                                <img
-                                    src={require("../styles/images/github.png")}
-                                    alt="github"
-                                />
+                    <div className={css.column}>
+                        <div
+                            className={
+                                css.card +
+                                " " +
+                                css.card_styled +
+                                " " +
+                                css.column
+                            }
+                        >
+                            <h3>WANT MORE?</h3>
+                            <p>
+                                Find this website and even <span>worse</span>{" "}
+                                stuff in my repositories!
+                            </p>
+                            <div className={css.row}>
+                                <div style={{ fontSize: "0.7em" }}>
+                                    You know you want to.
+                                </div>
+                                <div className={css.icon_container}>
+                                    <img
+                                        src={require("../styles/images/github.png")}
+                                        alt="github"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <div className={layout.footer_box + " " + layout.license}>
-                    <p>2022, Quizr</p>
-                    <p>MIT License</p>
-                    <p>Built by CMierez</p>
                 </div>
-                <div className={layout.blob1}></div>
-                <div className={layout.blob3}></div>
-                <div className={layout.blob2}></div>
+                <div className={css.license}>
+                    <p className={css.card}>2022, Quizr</p>
+                    <p className={css.card}>MIT License</p>
+                    <p className={css.card}>
+                        Built by <span>CMierez</span>
+                    </p>
+                </div>
+                <div className={css.blob1}></div>
+                <div className={css.blob3}></div>
+                <div className={css.blob2}></div>
             </div>
         </div>
     );
