@@ -1,15 +1,18 @@
 import { useParams, useSearchParams } from "react-router-dom";
 
-export const QuizPage = () => {
-    const urlParams = useParams();
+export interface QuizCardProps {
+    question: string;
+    answers: string[];
+    callback: any;
+    userAnswer: string;
+    questionNumber: number;
+    totalQuestions: number;
+}
 
-    // TODO: Search for the quiz with the id from the urlParams
-    // Can use .find() function
-    // Also need to parse the id. URL Params are always strings.
-
+export const QuizCard = () => {
     return (
         <>
-            <div>Quiz {urlParams.quizId}</div>;
+            <div>Quiz</div>
         </>
     );
 };
