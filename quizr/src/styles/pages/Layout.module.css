@@ -1,13 +1,19 @@
 .layout {
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-    height: 100%;
+}
+
+.outlet {
+    min-height: 30vh;
+    flex: 1;
 }
 
 .header {
-    position: relative;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 1px 10px 0 var(--primary--clr-600);
+
     min-height: 10vh;
     width: 100%;
 
@@ -16,6 +22,7 @@
 
     padding: 0 3rem;
     gap: 3rem;
+    z-index: 99;
 }
 
 .header h1.title {
@@ -28,16 +35,36 @@
     gap: 2em;
 }
 
-.header .content a {
+.header a {
     text-decoration: none;
     color: var(--neutral--clr-800);
     font-family: var(--secondary--font-family);
     font-weight: bold;
 }
 
+.header a:hover {
+    animation: navButtonAnimation 2s infinite alternate ease-in-out;
+}
+.header a:active {
+    transition: 0.1s;
+    transform: scale(0.9);
+    animation: 0;
+}
+
+@keyframes navButtonAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .header_wave_decorator {
     aspect-ratio: 350/21;
-    object-fit: contain;
     display: block;
     min-width: 100%;
     background-repeat: no-repeat;
@@ -69,7 +96,7 @@
     color: var(--neutral--clr-100);
 
     padding: 0 0 1rem 0;
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .footer h2.footer_title {
@@ -109,10 +136,11 @@
 .card_styled {
     color: var(--neutral--clr-100);
     background-color: var(--neutral--clr-800);
-    box-shadow: 0 0.5em 0 var(--neutral--clr-100),
+    box-shadow: 0 0em 0 var(--neutral--clr-100),
         0 0 0.4em var(--neutral--clr-100);
     border-radius: 1em;
     padding: 0.6em 1rem;
+    outline: 0.2em solid var(--neutral--clr-100);
 }
 
 .card_styled h3 {
@@ -143,14 +171,46 @@
     min-height: 100%;
     min-width: 100%;
     aspect-ratio: 1;
-    color: var(--tertiary--clr-400);
-    fill: var(--tertiary--clr-400);
+    color: var(--neutral--clr-100);
+    fill: var(--neutral--clr-100);
 }
 
 .card .icon_container {
     background-color: var(--neutral--clr-100);
     padding: 0.2em;
 }
+
+/* #id_socials {
+    transform: translate(0, 0.7em);
+} */
+
+#id_socials .title {
+    text-shadow: 0 0 0.2em var(--neutral--clr-100);
+    animation: glow-text 3s infinite alternate ease-in-out;
+}
+
+@keyframes glow-text {
+    from {
+        text-shadow: 0 0 0.2em var(--neutral--clr-100);
+    }
+    to {
+        text-shadow: 0 0 0.05em var(--neutral--clr-100);
+    }
+}
+
+#id_socials .icon_container {
+    animation: glow 3s infinite alternate ease-in-out;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 1em var(--neutral--clr-100);
+    }
+    to {
+        box-shadow: 0 0 0.3em var(--neutral--clr-100);
+    }
+}
+
 #id_socials :global(.row) {
     justify-content: space-evenly;
 }
@@ -158,8 +218,10 @@
 #id_socials .icon_container:hover {
     transform: rotate(360deg) scale(1.3);
 }
-.icon_container:active {
-    transition: 0.2s;
+
+.icon_container:active,
+#id_socials .icon_container:active {
+    transition: 0.1s;
     transform: scale(0.85);
 }
 
