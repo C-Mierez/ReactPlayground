@@ -29,9 +29,19 @@ const NavBar = () => {
                     <Link to="/about">About</Link>
                     <Link to="/quiz-game/2">Test</Link>
                 </main>
+                <AccountCard />
             </nav>
             <div className={css.header_wave_decorator} />
         </>
+    );
+};
+
+const AccountCard = () => {
+    return (
+        <div className={css.account_card}>
+            <div className={css.account_username}>MyUsername</div>
+            <div className={css.account_image} />
+        </div>
     );
 };
 

@@ -21,17 +21,14 @@ export const QuizGamePage = () => {
             <div className={css.main_container + " column"}>
                 <div className={css.main_description}>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Dolore asperiores ab culpa itaque animi, maiores
-                        vero iure cumque minus quisquam tempora unde nulla
-                        perferendis quis provident quia reiciendis perspiciatis,
-                        deserunt dolorem ad non corporis! Corporis dolores
-                        nostrum eius ipsum quas.
+                        Are you ready to take on this <i>totally not boring </i>
+                        challenge?
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Incidunt suscipit unde ab quo non deleniti fuga
-                        excepturi dolores, molestias nisi.
+                        Will you conquer the praised{" "}
+                        <i>and absolutely not fake</i>{" "}
+                        <a href="#">leaderboard</a> containing all the attempts
+                        of <i>totally not randomly generated players?</i>
                     </p>
                 </div>
                 <div className={css.preset_modes + " column"}>
@@ -73,7 +70,7 @@ export const QuizGamePage = () => {
                 </div>
             </div>
             <div className={css.ending}>
-                <QuizCard/>
+                <QuizCard />
             </div>
         </>
     );

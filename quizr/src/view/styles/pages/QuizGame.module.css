@@ -12,6 +12,11 @@
     z-index: -1;
 }
 
+.main_container p a {
+    color: var(--tertiary--clr-400);
+    font-weight: bold;
+}
+
 .endless_mode span {
     color: var(--neutral--clr-800);
     -webkit-text-stroke: 0.03em var(--neutral--clr-100);

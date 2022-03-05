@@ -35,7 +35,8 @@
     gap: 2em;
 }
 
-.header a {
+.header a,
+.account_card {
     text-decoration: none;
     color: var(--neutral--clr-800);
     font-family: var(--secondary--font-family);
@@ -346,4 +347,34 @@
     to {
         border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
     }
+}
+
+/* --------------------------------- Account -------------------------------- */
+.account_card {
+    height: 50%;
+    width: 10rem;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 1rem;
+}
+
+.account_image {
+    height: calc(var(--secondary--font-size) * 2);
+    aspect-ratio: 1;
+
+    background-image: url(../images/profile_pic.jpg);
+    background-size: cover;
+
+    border-radius: 50%;
+    border: 2px solid var(--neutral--clr-800);
+    box-shadow: 0 0 0.2em var(--neutral--clr-800);
+}
+
+.account_name {
+    text-align: center;
 }
