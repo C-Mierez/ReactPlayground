@@ -29,6 +29,12 @@ This is not a serious project. Just a variation of a tutorial I've followed but 
     -   [ ] Build a Ranking modal page with the user score compared to others.
     -   [ ] Add a "Share Score" on social media feature. 🤣
 
+-   [ ] Build an Active User display in the Navbar
+    -   [ ] Show an Anonymous account if not logged in. (Mocked)
+    -   [ ] Show the User account if logged in. (Mocked)
+    -   [ ] Add Log In feature.
+    -   [ ] Add Edit Username feature.
+    -   [ ] Add Log Out feature.
 -   [ ] More?
 
 ## 🧙‍♂️ QoL:
