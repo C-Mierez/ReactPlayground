@@ -23,6 +23,15 @@
     padding: 0 3rem;
     gap: 3rem;
     z-index: 99;
+
+    justify-content: center;
+    align-items: stretch;
+}
+
+.header__section {
+    width: calc(33.3% - 3rem);
+    justify-content: center;
+    align-items: center;
 }
 
 .header h1.title {
@@ -31,8 +40,8 @@
 }
 
 .header .content {
-    width: fit-content;
     gap: 2em;
+    justify-content: center;
 }
 
 .header a,
@@ -351,8 +360,7 @@
 
 /* --------------------------------- Account -------------------------------- */
 .account_card {
-    height: 50%;
-    width: 10rem;
+    width: 100%;
 
     display: flex;
     flex-direction: row;

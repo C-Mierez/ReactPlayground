@@ -3,6 +3,8 @@ import css from "../styles/pages/Layout.module.css";
 import { createRef, useEffect, useRef } from "react";
 import DriveFolderUpload from "@mui/icons-material/DriveFolderUpload";
 import { red } from "@mui/material/colors";
+import { useAppDispatch, useAppSelector } from "../../app/redux/hooks";
+import { actionLogIn, actionLogOut } from "../../app/redux/account/actions";
 
 export const LayoutPage = () => {
     return (
@@ -20,16 +22,24 @@ const NavBar = () => {
     return (
         <>
             <nav className={css.header + " " + "row"}>
-                <Link to="/">
-                    <h1 className={css.title}>QUIZR</h1>
-                </Link>
-                <main className={css.content + " " + "row"}>
-                    <Link to="/">Home</Link>
-                    <Link to="/quiz-game">Quiz</Link>
-                    <Link to="/about">About</Link>
-                    <Link to="/quiz-game/2">Test</Link>
-                </main>
-                <AccountCard />
+                <div className={css.header__section + " column"}>
+                    <div className={css.title_card + " row"}>
+                        <Link to="/">
+                            <h1 className={css.title}>QUIZR</h1>
+                        </Link>
+                    </div>
+                </div>
+                <div className={css.header__section + " column"}>
+                    <main className={css.content + " " + "row"}>
+                        <Link to="/">Home</Link>
+                        <Link to="/quiz-game">Quiz</Link>
+                        <Link to="/about">About</Link>
+                        <Link to="/quiz-game/2">Test</Link>
+                    </main>
+                </div>
+                <div className={css.header__section + " column"}>
+                    <AccountCard />
+                </div>
             </nav>
             <div className={css.header_wave_decorator} />
         </>
@@ -37,10 +47,27 @@ const NavBar = () => {
 };
 
 const AccountCard = () => {
+    const state = useAppSelector((state) => state.account);
+    const dispatch = useAppDispatch();
+
+    const handleAccountClick = () => {
+        console.log("Clicked Account");
+        if (state.isLoggedIn) {
+            dispatch(actionLogOut());
+        } else {
+            dispatch(actionLogIn({ name: "MyName", image: "Image" }));
+        }
+    };
     return (
-        <div className={css.account_card}>
-            <div className={css.account_username}>MyUsername</div>
-            <div className={css.account_image} />
+        <div className={css.account_card} onClick={handleAccountClick}>
+            {state.isLoggedIn ? (
+                <>
+                    <div className={css.account_username}>{state.name}</div>
+                    <div className={css.account_image} />
+                </>
+            ) : (
+                <div className={css.account_username}>{state.name}</div>
+            )}
         </div>
     );
 };
