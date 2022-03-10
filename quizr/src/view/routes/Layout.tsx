@@ -1,10 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import css from "../styles/pages/Layout.module.css";
-import { createRef, useEffect, useRef } from "react";
-import DriveFolderUpload from "@mui/icons-material/DriveFolderUpload";
-import { red } from "@mui/material/colors";
+import React, { ReactElement } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/redux/hooks";
-import { actionLogIn, actionLogOut } from "../../app/redux/account/actions";
+import { actionLogOut, thunkLogIn } from "../../app/redux/account/actions";
+import { CircularProgress } from "@mui/material";
+import profilePic from "../styles/images/profile_pic.jpg";
+import anonymousPic from "../styles/images/anonymous.png";
+import userIcon from "../styles/svgs/account-circle-outline.svg";
+import {} from "../styles/images/anonymous.png";
 
 export const LayoutPage = () => {
     return (
@@ -47,28 +50,122 @@ const NavBar = () => {
 };
 
 const AccountCard = () => {
-    const state = useAppSelector((state) => state.account);
+    const state = useAppSelector((st) => st.account);
     const dispatch = useAppDispatch();
+
+    const [isOpen, setIsOpen] = React.useState(false);
 
     const handleAccountClick = () => {
         console.log("Clicked Account");
         if (state.isLoggedIn) {
             dispatch(actionLogOut());
         } else {
-            dispatch(actionLogIn({ name: "MyName", image: "Image" }));
+            dispatch(thunkLogIn("MyName"));
         }
     };
+
+    const handleLogIn = () => {
+        setIsOpen(!isOpen);
+    };
+    const account_image = state.isLoggedIn ? profilePic : anonymousPic;
     return (
-        <div className={css.account_card} onClick={handleAccountClick}>
-            {state.isLoggedIn ? (
-                <>
+        <div className={css.account_card}>
+            <>
+                <div className={css.account_card__header}>
                     <div className={css.account_username}>{state.name}</div>
-                    <div className={css.account_image} />
-                </>
-            ) : (
-                <div className={css.account_username}>{state.name}</div>
-            )}
+                    <div className={css.account_image} onClick={handleLogIn}>
+                        <img src={account_image} alt="pic" />
+                    </div>
+                    {isOpen && <DropdownMenu></DropdownMenu>}
+                </div>
+            </>
         </div>
+    );
+};
+
+const UserIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+        <path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z" />
+    </svg>
+);
+
+const ArrowLeft = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+    </svg>
+);
+
+const ArrowRight = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+    </svg>
+);
+
+const DropdownMenu = () => {
+    const DropdownItem = (props: {
+        children: ReactElement;
+        leftIcon?: ReactElement;
+        rightIcon?: ReactElement;
+    }) => {
+        let justifyContentStyle = "flex-end";
+        if (props.leftIcon != null && props.rightIcon == null) {
+            justifyContentStyle = "flex-start";
+        }
+        return (
+            <div
+                className={css.dropdown__item}
+                style={{ justifyContent: justifyContentStyle }}
+            >
+                {props.leftIcon ? (
+                    <div className={css.dropdown__item__icon}>
+                        {props.leftIcon}
+                    </div>
+                ) : (
+                    <></>
+                )}
+                {props.children}
+                {props.rightIcon ? (
+                    <div className={css.dropdown__item__icon}>
+                        {props.rightIcon}
+                    </div>
+                ) : (
+                    <></>
+                )}
+            </div>
+        );
+    };
+
+    const ProfilePictureSelector = () => (
+        <div className={css.picture_selector}>
+            <ArrowLeft></ArrowLeft>
+            <img src={anonymousPic} alt="preview"></img>
+            <ArrowRight></ArrowRight>
+        </div>
+    );
+
+    return (
+        <form className={css.dropdown}>
+            <div className={css.dropdown__title}>Choose your nickname</div>
+            <div className={css.account_preview}>
+                <ProfilePictureSelector></ProfilePictureSelector>
+                <p>Preview</p>
+            </div>
+            <DropdownItem rightIcon={<UserIcon></UserIcon>}>
+                <input
+                    type="text"
+                    className={css.dropdown__item__input}
+                    placeholder="Nickname"
+                ></input>
+            </DropdownItem>
+
+            <DropdownItem>
+                <div className={css.dropdown__submit}>SUBMIT</div>
+            </DropdownItem>
+            <div className={css.dropdown__tooltip}>
+                <span>Can't decide? </span>
+                <span id={css.randomize}>Randomize!</span>
+            </div>
+        </form>
     );
 };
 
@@ -225,3 +322,35 @@ const Footer = () => {
         </div>
     );
 };
+
+{
+    /* {state.loading ? (
+                <div className={css.account_loading}>
+                    <CircularProgress size={"1.7em"} thickness={4.2} />
+                </div>
+            ) : (
+                <>
+                    {state.isLoggedIn ? (
+                        <>
+                            <div
+                                className={css.account_username}
+                                onClick={handleAccountClick}
+                            >
+                                {state.name}
+                            </div>
+                            <div
+                                className={css.account_image}
+                                onClick={handleAccountClick}
+                            />
+                        </>
+                    ) : (
+                        <div
+                            className={css.account_username}
+                            onClick={handleAccountClick}
+                        >
+                            {state.name}
+                        </div>
+                    )}
+                </>
+            )} */
+}
