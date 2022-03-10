@@ -32,9 +32,10 @@ This is not a serious project. Just a variation of a tutorial I've followed but 
 -   [ ] Build an Active User display in the Navbar
     -   [ ] Show an Anonymous account if not logged in. (Mocked)
     -   [ ] Show the User account if logged in. (Mocked)
-    -   [ ] Add Log In feature.
-    -   [ ] Add Edit Username feature.
-    -   [ ] Add Log Out feature.
+    -   [ ] Add a Modal View for login features:
+        -   [ ] Add Log In feature.
+        -   [ ] Add Edit Username feature.
+        -   [ ] Add Log Out feature.
 -   [ ] More?
 
 ## 🧙‍♂️ QoL:
