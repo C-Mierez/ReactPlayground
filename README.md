@@ -4,6 +4,7 @@ Just a few React projects as I learn the framework
 
 > Also first time with Js and Ts 😄
 
+<!-- $P = \text{Period}, p_i \in P$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=P%20%3D%20%5Ctext%7BPeriod%7D%2C%20p_i%20%5Cin%20P">
 ## Some React Hooks
 
 Basic:
